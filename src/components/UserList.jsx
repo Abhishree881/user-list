@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../assets/styles/list.css";
 import Loader from "./Loader";
 import dp from "../assets/img/download 2.png";
+import nodata from "../assets/img/nodata.png";
 
 const UserList = ({ data, loading }) => {
   console.log(loading);
@@ -102,7 +103,11 @@ const UserList = ({ data, loading }) => {
                     </span>
                   </>
                 ) : (
-                  <div>No data to display</div>
+                  <div className="no-data">
+                    {/* <img src={nodata} alt="nodata" />
+                     */}
+                    <span>No data to display</span>
+                  </div>
                 )}
               </div>
             </div>

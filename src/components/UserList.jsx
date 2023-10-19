@@ -4,6 +4,7 @@ import Loader from "./Loader";
 import dp from "../assets/img/download 2.png";
 
 const UserList = ({ data, loading }) => {
+  console.log(loading);
   const [imageLoaded, setImageLoaded] = useState({});
 
   useEffect(() => {

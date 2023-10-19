@@ -3,8 +3,21 @@ import "../assets/styles/list.css";
 import Loader from "./Loader";
 import dp from "../assets/img/download 2.png";
 import nodata from "../assets/img/nodata.png";
+import Swal from "sweetalert2";
 
 const UserList = ({ data, loading }) => {
+  useEffect(() => {
+    const alertShown = localStorage.getItem("alertShown");
+    if (!alertShown) {
+      Swal.fire({
+        title: "Scroll the users list section to see all users!",
+        icon: "info",
+        confirmButtonText: "OK",
+      });
+      localStorage.setItem("alertShown", "true");
+    }
+  }, []);
+
   const [imageLoaded, setImageLoaded] = useState({});
   const [id, setId] = useState(0);
 

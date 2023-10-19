@@ -1,43 +1,68 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "../assets/styles/list.css";
 import Loader from "./Loader";
+import dp from "../assets/img/download 2.png";
 
-const UserList = () => {
-  const [data, setData] = useState();
-  const [loading, setLoading] = useState(true);
+const UserList = ({ data, loading }) => {
+  const [imageLoaded, setImageLoaded] = useState({});
 
   useEffect(() => {
-    // Define the API endpoint you want to fetch data from
-    const apiUrl = "https://602e7c2c4410730017c50b9d.mockapi.io/users"; // Replace with your API URL
+    data.forEach(async (index) => {
+      const img = new Image();
+      img.src = index.avatar;
+      try {
+        const response = await fetch(img.src, {
+          method: "HEAD",
+          redirect: "follow",
+        });
+        // console.log(index.profile.firstName);
+        setImageLoaded((prevImageLoaded) => ({
+          ...prevImageLoaded,
+          [index.createdAt]: true,
+        }));
+      } catch {
+        // console.log("error");
+        setImageLoaded((prevImageLoaded) => ({
+          ...prevImageLoaded,
+          [index.createdAt]: false,
+        }));
+      }
+    });
+  }, [data]);
 
-    // Make a GET request to the API
-    axios
-      .get(apiUrl)
-      .then((response) => {
-        // Set the fetched data in the state
-        setData(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setLoading(false);
-      });
-  }, []);
   return (
     <div>
       {loading ? (
-        <p>
+        <span>
           <Loader />
-        </p>
+        </span>
       ) : (
-        <div className="user-list">
-          <h2 className="list-head">User List</h2>
-          <ul>
-            {data.map((index) => {
-              return <li>{index.Bio}</li>;
-            })}
-          </ul>
+        <div className="main">
+          <div className="list-side">
+            <div className="user-list">
+              <h2 className="list-head">USERS LIST</h2>
+              <ul className="list">
+                {data.map((index) => {
+                  return (
+                    <li key={index.createdAt} className="list-item">
+                      {imageLoaded[index.createdAt] ? (
+                        <img
+                          src={index.avatar}
+                          alt="Image could not be fetched"
+                        />
+                      ) : (
+                        <img src={dp} alt="default dp" />
+                      )}
+                      <div>
+                        {index.profile.firstName} {index.profile.lastName}
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+          <div className="profile-side">Hello</div>
         </div>
       )}
     </div>

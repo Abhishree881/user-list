@@ -1,3 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.main {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: row;
+}
+
+.list-side {
+    width: 50%;
+}
+
+.profile-side {
+    width: 50%;
+}
+
+.user-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    max-width: 500px;
+    margin: 3vh auto;
+}
+
 .list-head {
     background-color: #C5DFFF;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 400;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+}
+
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+    height: 85vh;
+    width: 100%;
+    background-color: #ECECEC;
+    padding: 10px;
+}
+
+.list::-webkit-scrollbar {
+    display: none;
+}
+
+.list-item {
+    background-color: #ECECEC;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 2vh auto;
+    padding: 5px;
+}
+
+.list-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.list-item:hover {
+    background-color: #D4D4D4;
+}
+
+.list-item:focus {
+    background-color: #D4D4D4;
 }

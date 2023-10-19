@@ -5,8 +5,8 @@ import dp from "../assets/img/download 2.png";
 import nodata from "../assets/img/nodata.png";
 
 const UserList = ({ data, loading }) => {
-  console.log(loading);
   const [imageLoaded, setImageLoaded] = useState({});
+  const [id, setId] = useState(0);
 
   useEffect(() => {
     data.forEach(async (index) => {
@@ -35,7 +35,10 @@ const UserList = ({ data, loading }) => {
   const [user, setUser] = useState({});
   const handleclick = (doc) => {
     setUser(doc);
+    setId(doc.id);
   };
+
+  console.log(id);
 
   return (
     <div>
@@ -53,7 +56,9 @@ const UserList = ({ data, loading }) => {
                   return (
                     <li
                       key={index.createdAt}
-                      className="list-item"
+                      className={
+                        id === index.id ? "list-item active" : "list-item"
+                      }
                       onClick={() => handleclick(index)}
                     >
                       {imageLoaded[index.createdAt] ? (

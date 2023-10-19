@@ -38,8 +38,6 @@ const UserList = ({ data, loading }) => {
     setId(doc.id);
   };
 
-  console.log(id);
-
   return (
     <div>
       {loading ? (

@@ -13,3 +13,9 @@ body {
 code {
   font-family: 'Montserrat', sans-serif;
 }
+
+@media (max-width:700px) {
+  body {
+    overflow-y: scroll;
+  }
+}
